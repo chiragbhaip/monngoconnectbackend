@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const restaurantSchema = new mongoose.Schema(
+const deliveryExecutiveSchema = new mongoose.Schema(
     {
-        restaurantName:{
-            type:String,
-            required:true
-        },        
-        restaurantLocation:{
+        vehicleNumber:{
+            type:String, // think for data type
+            required:true,
+        },
+        deliveryExecutiveLocation:{
             address:{type:String},
             city:{type:String},
             zip:{type:Number},
@@ -16,20 +16,12 @@ const restaurantSchema = new mongoose.Schema(
             longitude:{type:Number},            
             
         },
-        workingHours:{
-            start: {type:Number},
-            end: {type:Number}
-        },
         activityStatus:{
             type:Boolean,
             required:true
         },
-        restaurantImages:[{
-            type:String,
-            required:true            
-        }],
-        restaurantRatings:[{
-            userId: {type: mongoose.Schema.Types.ObjectId, ref: 'userModel'}, //Ref of User ID
+        deliveryExecutiveRatings:[{
+            userID: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}, //Ref of User ID
             rating: {type:Number}
         }],
         userId:{
@@ -39,4 +31,4 @@ const restaurantSchema = new mongoose.Schema(
     }
 )
 
-module.exports = restaurantSchema;
+module.exports = deliveryExecutiveSchema;
