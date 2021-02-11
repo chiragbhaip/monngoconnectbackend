@@ -91,14 +91,14 @@ db.on('error', console.error.bind(console, 'connection error'));
 
 //     const foodDataCollection = mongoose.model('food',foodSchema,'foods');
 //     const foodObj= new foodDataCollection({
-//         foodName:"Food 2",
+//         foodName:"Food 1",
 //         foodType:"Veg",
 //         foodCategory:[
 //             "pizza",
 //             "burger"
 //         ],
-//         foodDescription:"Food 2 description",
-//         foodImage:"foodimage2.jpg",
+//         foodDescription:"Food 1 description",
+//         foodImage:"foodimage1.jpg",
 //         foodPrice:500,
 //         foorRating:[{
 
@@ -119,63 +119,58 @@ db.on('error', console.error.bind(console, 'connection error'));
 //     });
 // })
 
-db.once('open',function(){
+db.once('open',async function(){
     console.log("Connected");
 
     const cartDataCollection = mongoose.model('cart',cartSchema,'cart');
-    const cartObj= new cartDataCollection({
-       userId:"6022758d0fd97c59cc971c75",
-       foodList:[
-          {
-              foodId:"60236f2c027a466b40adeb20",
-              quantity:1
-          }
-       ],
-       restaurantId:"602281dc7819cf63f42ca39b"
-    })
-    console.log(cartObj);
-    cartObj.save(function(err,res){
-        console.log(res);
-    })
+    // const cartObj= new cartDataCollection({
+    //    userId:"6022758d0fd97c59cc971c75",
+    //    foodList:[
+    //       {
+    //           foodId:"6023c71cbb28355f9867fae1",
+    //           quantity:1
+    //       }
+    //    ],
+    //    restaurantId:"602281dc7819cf63f42ca39b"
+    // })
+    // console.log(cartObj);
+    // cartObj.save(function(err,res){
+    //     console.log(res);
+    // })
 
-    cartDataCollection.find(function(err,res){
-        if(err){
-            console.error(err);
-        }
-        console.log(res);
-    }); 
+    let data=await cartDataCollection.find();
+    console.log("Here is data",data);
 })
 
-db.once('open', function () {
-    console.log("Connected");
+// db.once('open', function () {
+//     console.log("Connected");
 
-    const cartDataCollection = mongoose.model('cart', cartSchema, 'cart');
-    const cartUser = cartDataCollection.find({userId:"6022758d0fd97c59cc971c75"},function (err, res) {
-        if (err) {
-            console.error(err);
-            return null;
-        }
-        console.log(res);
-        return res;
-    });
+//     const cartDataCollection = mongoose.model('cart', cartSchema, 'cart');
+//     const cartUser = cartDataCollection.find(function (err, res) {
+//         if (err) {
+//             console.error(err);
+//             // return null;
+//         }
+//         // console.log("Hello");
+//         return res;
+//     });
 
-    console.log(cartUser);
+//     console.log(cartUser);
     
+//     const orderDataCollection = mongoose.model('order', orderSchema, 'orders');
 
-    const orderDataCollection = mongoose.model('order', orderSchema, 'orders');
+//     const orderObj = new orderDataCollection({
 
-    const orderObj = new orderDataCollection({
+//     })
+//     console.log(orderObj);
+//     orderObj.save(function (err, res) {
+//         console.log(res);
+//     })
 
-    })
-    console.log(orderObj);
-    orderObj.save(function (err, res) {
-        console.log(res);
-    })
-
-    orderDataCollection.find(function (err, res) {
-        if (err) {
-            console.error(err);
-        }
-        console.log(res);
-    });
-})
+//     orderDataCollection.find(function (err, res) {
+//         if (err) {
+//             console.error(err);
+//         }
+//         console.log(res);
+//     });
+// })
