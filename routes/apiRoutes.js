@@ -42,8 +42,9 @@ router.post("/user", (request, response) => {
     mobileNumber: request.body.mobileNumber,
     role: request.body.role,
     deliveryExecutive: request.body.deliveryExecutive,
-    cart: request.body.cart,
+    // cart: request.body.cart,
     orderDetails: request.body.orderDetails,
+    // foodIds:request.body.foodIds,
     restaurantDetails: request.body.restaurantDetails,
     deliveryExecutiveDetails: request.body.deliveryExecutiveDetails,
     cart: request.body.cart,
@@ -99,7 +100,68 @@ router.get("/user/:id",(request,response) => {
     }).catch((error) => {
         console.log("Error:",error);
     })
-
 })
+
+// cart details
+// router.post('/cart',(request,response) => {
+//   console.log("In cart:");
+
+//   const id = "60260e1b2222af1cc43a0cc9";
+//   // let data = await userDataCollection.findByIdAndUpdate(id,{$set:{"cart.restaurantId":"asdda"}},{$push:{"cart.foodList":{foodId:"aaa",quantity:2}}});
+//   var restaurantId = "restaurantId 2";
+//   const foodListDoc = {
+//       foodId: "foodId 21",
+//       quantity: 1
+//   }
+//   var cart = await userDataCollection.findById({ _id: id }, 'cart');
+
+//   if (cart.cart.restaurantId == restaurantId) {
+//       console.log("Restaurant Id is same");
+//       if (cart.cart.foodList.some(food => food.foodId == foodListDoc.foodId)) {
+//           console.log("Food Id is match");
+//           var foodList = cart.cart.foodList;
+//           for (var i in foodList) {
+//               if (foodList[i].foodId == foodListDoc.foodId) {
+//                   foodList[i].quantity += 1;
+//               }
+//           }
+//           userDataCollection.findOneAndUpdate(
+//               { _id: id },
+//               {
+//                   $set: { "cart.foodList": foodList },
+//               },
+//               function (err, data) {
+//                   console.log("Updated the foodList data", data);
+//               });
+//       } else {
+//           console.log("Food Id is not match");
+//           userDataCollection.findOneAndUpdate(
+//               { _id: id },
+//               {
+//                   $push: { "cart.foodList": foodListDoc },
+//               },
+//               function (err, data) {
+//                   console.log("Added new food id", data);
+//                   // console.log("Here is err", err);
+//               });
+//       }
+//   } else {
+//       console.log("Restaurant Id is not same")
+//       userDataCollection.findOneAndUpdate(
+//           { _id: id },
+//           {
+//               $set: { "cart.restaurantId": restaurantId,"cart.foodList": foodListDoc },
+//           },
+//           function (err, data) {
+//               console.log("Added first time", data);
+              
+//           });
+//   }
+  
+
+//   const cart = new UserModel({
+      
+//   })
+// })
 
 module.exports = router;

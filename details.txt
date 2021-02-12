@@ -1,0 +1,186 @@
+http://localhost:5000/add-restuarant
+{
+    "restaurantName":"Royal by chirag by harshad today by vgs",
+    "restaurantLocation":{
+        "address":"Jamalpur",
+        "city":"Abad",
+        "zip":380022,
+        "state":"Gujarat",
+        "country":"India",
+        "latitude":3502.00,
+        "longitude":2500.00
+    },
+    "workingHours":{
+        "start":9,
+        "end":9
+    },
+    "activityStatus":true,
+    "restaurantImages":"https://images.unsplash.com/photo-1531897875706-73e91f9cd5ad?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdHVhcmFudHN8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "restaurantRatings":[{
+        "userId":"60250fbe01ab938e4c9f3757",
+        "rating":4.5
+    }],
+    "userId":"60250fbe01ab938e4c9f3757",
+    "menuDetails":[{
+        "foodName":"Pasta",
+        "foodType":"Veg",
+        "foodCategory":"Pizza",
+        "foodDescription":"Amazing Food",
+        "foodImage":"https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cGl6emF8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "foodPrice":2000,
+        "foodRating":[{
+            "userId":"60250fbe01ab938e4c9f3757",
+            "rating":4.5
+        }]
+    }]
+}
+
+http://localhost:5000/user
+
+    {
+    "firstName":"VVedcand",
+    "lastName":"parikh",
+    "email":"vgs@terst.com",
+    "password":12345678,
+    "birthDate":"12/21/2121",
+    "gender":"male",
+    "mobileNumber":1234567895,
+    "role":"Admin",
+    "deliveryExecutive":{
+        "vehicleNumber":"manan",
+        "deliveryExecutiveLocation":{
+                "address":"Godrej gardens uravshi",
+                "city":"Surtat",
+                "zip":123456,
+                "state":"gujarta",
+                "country":"India",
+                "latitude":1203.4,
+                "longitude":1204.3
+            },
+            "activityStatus":true,
+            "deliveryExecutiveRatings":[
+
+            ],
+            "cart":{
+                "restaurantId":"6026676a89fb52a9509a4d54",
+                "foodList":[{
+                    "foodId":"1223455",
+                    "quantity":1
+                }]
+            },
+            "   ":[{
+                "foodName":"Pizza",
+                "foodType":"Veg",
+                "foodCategory":[{
+                    "type":"Itialian"
+                }],
+                "foodDescription":"Helolo food",
+                "foodImage":"https://images.unsplash.com/photo-1604820849194-837928614a4a?ixid=MXwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8Ym84alFLVGFFMFl8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                "foodPrice":10
+            }]
+        }
+    }
+
+http://localhost:5000/get-restuarants
+
+[
+    {
+        "restaurantLocation": {
+            "address": "Abc",
+            "city": "Surat",
+            "zip": 111111,
+            "state": "Gujarat",
+            "country": "India",
+            "latitude": 12.2342323,
+            "longitude": 123.434
+        },
+        "workingHours": {
+            "start": 8,
+            "end": 22
+        },
+        "restaurantImages": [
+            "dhfjsdfkhsjkldfhsdhf",
+            "fjdshfjklhsdfjuh"
+        ],
+        "_id": "6024c79cc65fd943b4e0cf4e",
+        "restaurantName": "AA",
+        "activityStatus": true,
+        "restaurantRatings": [
+            {
+                "_id": "6024c79cc65fd943b4e0cf4f",
+                "rating": 4
+            }
+        ],
+        "menuDetails": [
+            {
+                "foodCategory": [
+                    "pizza",
+                    "burger"
+                ],
+                "_id": "6024c79cc65fd943b4e0cf50",
+                "foodName": "Food 1",
+                "foodType": "Veg",
+                "foodDescription": "Food 1 description",
+                "foodImage": "foodimage1.jpg",
+                "foodPrice": 500,
+                "foodRating": []
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "restaurantLocation": {
+            "address": "Jamalpur",
+            "city": "Abad",
+            "zip": 380022,
+            "state": "Gujarat",
+            "country": "India",
+            "latitude": 3502,
+            "longitude": 2500
+        },
+        "workingHours": {
+            "start": 9,
+            "end": 9
+        },
+        "restaurantImages": [
+            "https://images.unsplash.com/photo-1531897875706-73e91f9cd5ad?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdHVhcmFudHN8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+        ],
+        "_id": "60265d1fcf1f81963c873d7f",
+        "restaurantName": "Royal by chirag by harshad today",
+        "activityStatus": true,
+        "restaurantRatings": [
+            {
+                "_id": "60265d1fcf1f81963c873d80",
+                "userId": "60250fbe01ab938e4c9f3757",
+                "rating": 4.5
+            }
+        ],
+        "userId": "60250fbe01ab938e4c9f3757",
+        "menuDetails": [
+            {
+                "foodCategory": [
+                    "Pizza"
+                ],
+                "_id": "60265d1fcf1f81963c873d81",
+                "foodName": "Pasta",
+                "foodType": "Veg",
+                "foodDescription": "Amazing Food",
+                "foodImage": "https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cGl6emF8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                "foodPrice": 2000,
+                "foodRating": [
+                    {
+                        "_id": "60265d1fcf1f81963c873d82",
+                        "userId": "60250fbe01ab938e4c9f3757",
+                        "rating": 4.5
+                    }
+                ]
+            }
+        ],
+        "__v": 0
+    }
+]
+
+http://localhost:5000/get-restuarantsById/602512740e7f7847ec616903
+
+
+http://localhost:5000/user/60260e664630d47a0c57b0bf
