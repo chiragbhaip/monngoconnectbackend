@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const restaurantSchema = new mongoose.Schema(
+const restaurantSchema = mongoose.Schema(
     {
         restaurantName:{
             type:String,
@@ -61,11 +61,11 @@ const restaurantSchema = new mongoose.Schema(
                 required:true
             },
             foodRating:[{
-                userID: {type: mongoose.Schema.Types.ObjectId, ref: 'userModel'}, //Ref of User ID
+                userId: {type: mongoose.Schema.Types.ObjectId, ref: 'userModel'}, //Ref of User ID
                 rating: {type:Number}
             }],
         }]
     }
 )
 
-module.exports = restaurantSchema;
+module.exports = mongoose.model("Restaurant",restaurantSchema);

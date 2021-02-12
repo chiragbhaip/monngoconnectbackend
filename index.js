@@ -1,15 +1,30 @@
+const express = require('express');
+const app = express();
+
+const appRoutes = require('./routes/apiRoutes')
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const foodSchema = require('./model/foodModel');
-const restaurantSchema = require('./model/restaurantModel');
-const userSchema = require('./model/userModel');
-const orderSchema = require('./model/orderModel');
-const cartSchema = require('./model/cartModel');
+// const foodSchema = require('./model/foodModel');
+// const restaurantSchema = require('./model/restaurantModel');
+// const userSchema = require('./model/userModel');
+// const orderSchema = require('./model/orderModel');
+// const cartSchema = require('./model/cartModel');
 dotenv.config();
-mongoose.connect(
-    process.env.CONNECTION_STRING,
-    { useNewUrlParser: true, useUnifiedTopology: true }
-);
+
+
+app.use(express.json()) 
+app.use('/',appRoutes)
+
+
+app.listen(5000,() => {
+    console.log("Server listening to the port 5000");
+})
+
+
+mongoose.connect( process.env.CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true },(err) => {
+    if(err) return console.log(err.message)
+    console.log("Database Connected!");
+});
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
@@ -119,28 +134,28 @@ db.on('error', console.error.bind(console, 'connection error'));
 //     });
 // })
 
-db.once('open',async function(){
-    console.log("Connected");
+// db.once('open',async function(){
+//     console.log("Connected");
 
-    const cartDataCollection = mongoose.model('cart',cartSchema,'cart');
-    // const cartObj= new cartDataCollection({
-    //    userId:"6022758d0fd97c59cc971c75",
-    //    foodList:[
-    //       {
-    //           foodId:"6023c71cbb28355f9867fae1",
-    //           quantity:1
-    //       }
-    //    ],
-    //    restaurantId:"602281dc7819cf63f42ca39b"
-    // })
-    // console.log(cartObj);
-    // cartObj.save(function(err,res){
-    //     console.log(res);
-    // })
+//     const cartDataCollection = mongoose.model('cart',cartSchema,'cart');
+//     // const cartObj= new cartDataCollection({
+//     //    userId:"6022758d0fd97c59cc971c75",
+//     //    foodList:[
+//     //       {
+//     //           foodId:"6023c71cbb28355f9867fae1",
+//     //           quantity:1
+//     //       }
+//     //    ],
+//     //    restaurantId:"602281dc7819cf63f42ca39b"
+//     // })
+//     // console.log(cartObj);
+//     // cartObj.save(function(err,res){
+//     //     console.log(res);
+//     // })
 
-    let data=await cartDataCollection.find();
-    console.log("Here is data",data);
-})
+//     let data=await cartDataCollection.find();
+//     console.log("Here is data",data);
+// })
 
 // db.once('open', function () {
 //     console.log("Connected");
