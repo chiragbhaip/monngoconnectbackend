@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const restaurantSchema = require('./model/restaurantModel');
 const userSchema = require('./model/userModel');
+const orderSchema =require('./model/orderModel');
 
 dotenv.config();
 mongoose.connect(
@@ -17,69 +18,68 @@ db.on('error', console.error.bind(console, 'connection error'));
 
 // First time user registartion
 
-// db.once('open',function(){
-//     console.log("Connected");
+db.once('open',function(){
+    console.log("Connected");
 
-//     const userDataCollection = mongoose.model('user',userSchema,'users');
-//     const userObj= new userDataCollection({
-//         firstName:'Chirag 1',
-//         lastName:'Patel bhai',
-//         email:'chirag@gmail.com',
-//         password:'chirag',
-//         birthDate:new Date(),
-//         gender:'Male',
-//         mobileNumber:5621,
-//         role:['DE'],
-//         deliveryExecutive:{
-//             vehicleNumber:"101-101-1111",
-//             deliveryExecutiveLocation:{
-//                 address:"abc",
-//                 city:"Gandhinagar",
-//                 zip:382745,
-//                 state:"Gujarat",
-//                 country:"India",
-//                 latitude:13.252564,
-//                 longitude:14.25645, 
-//             },
-//             activityStatus:true,
-//             deliveryExecutiveRatings:[]
-//         }
-//     })
-//     let userObj= new userDataCollection({
-//         firstName:'Venketesh 1',
-//         lastName:'Soma 1',
-//         email:'venky@gmail.com',
-//         password:'venky',
-//         birthDate:new Date(),
-//         gender:'Male',
-//         mobileNumber:1111,
-//         role:['NU'],
-//     })
+    const userDataCollection = mongoose.model('user',userSchema,'users');
+    // const userObj= new userDataCollection({
+    //     firstName:'Chirag 1',
+    //     lastName:'Patel bhai',
+    //     email:'chirag@gmail.com',
+    //     password:'chirag',
+    //     birthDate:new Date(),
+    //     gender:'Male',
+    //     mobileNumber:5621,
+    //     role:['DE'],
+    //     deliveryExecutive:{
+    //         vehicleNumber:"101-101-1111",
+    //         deliveryExecutiveLocation:{
+    //             address:"abc",
+    //             city:"Gandhinagar",
+    //             zip:382745,
+    //             state:"Gujarat",
+    //             country:"India",
+    //             latitude:13.252564,
+    //             longitude:14.25645, 
+    //         },
+    //         activityStatus:true,
+    //         deliveryExecutiveRatings:[]
+    //     }
+    // })
+    let userObj= new userDataCollection({
+        firstName:'Venketesh 1',
+        lastName:'Soma 1',
+        email:'venky@gmail.com',
+        password:'venky',
+        birthDate:new Date(),
+        gender:'Male',
+        mobileNumber:1111,
+        role:['NU'],
+    })
 
-//     console.log("UserObject Data:",userObj);
-//     userObj.save(function(err,user){
-//         if(err) console.log(err.message);
-//         else{
-//             console.log("User Data======",user);
-//         }
-//     })
+    console.log("UserObject Data:",userObj);
+    userObj.save(function(err,user){
+        if(err) console.log(err.message);
+        else{
+            console.log("User Data======",user);
+        }
+    })
 
-//     userDataCollection.find(function(err,user){
-//         if(err){
-//             console.error(err);
-//         }
-//         console.log(err);
-//         console.log(user);
-//     });
+    userDataCollection.find(function(err,user){
+        if(err){
+            console.error(err);
+        }
+        console.log(err);
+        console.log(user);
+    });
 
-// })
+})
 
 
 //First time restaurant adding
 
 // db.once('open', function () {
 //     console.log("Connected");
-
 //     const resDataCollection = mongoose.model('restaurant', restaurantSchema, 'restaurants');
 //     const resObj = new resDataCollection({
 //         restaurantName: "AA",
@@ -133,12 +133,14 @@ db.on('error', console.error.bind(console, 'connection error'));
 // })
 
 
+// *********** Cart Logic for Adding food, Removing food and Increasing Quantity 
+
 // db.once('open', async function () {
 //     console.log("Connected");
 //     const userDataCollection = mongoose.model('user', userSchema, 'users');
-//     const id = "60260e1b2222af1cc43a0cc9";
+//     const id = "60265dc0cf1f81963c873d84";
 //     // let data = await userDataCollection.findByIdAndUpdate(id,{$set:{"cart.restaurantId":"asdda"}},{$push:{"cart.foodList":{foodId:"aaa",quantity:2}}});
-//     var restaurantId = "restaurantId 2";
+//     var restaurantId = "60265df8cf1f81963c873d85";
 //     const foodListDoc = {
 //         foodId: "foodId 21",
 //         quantity: 1
@@ -192,6 +194,105 @@ db.on('error', console.error.bind(console, 'connection error'));
 // })
 
 
+
+// **************** Ordered Logic ******************
+
+// db.once('open', async function () {
+//     console.log("Connected");
+//     const userDataCollection = mongoose.model('user', userSchema, 'users');
+//     const restaurantDataCollection = mongoose.model('restaurant', restaurantSchema, 'restaurants');
+
+//     var totalAmount=0;
+//     const userid = "60265dc0cf1f81963c873d84";
+//     var cart = await userDataCollection.findById({ _id: userId }, 'cart');
+//     if(cart!=null){
+//         var menuDetails=await restaurantDataCollection.findById({_id:cart.cart.restaurantId},'menuDetails');
+//         console.log("Menu Details :",menuDetails);
+//     }
+//     const orderDataCollection = mongoose.model('order', orderSchema, 'orders');
+//     const orderObj=new orderDataCollection({
+//         orderLocation: {
+//             address: "Address 1",
+//             city: "Gandhinagar",
+//             zip: 382745,
+//             state: "Gujarat",
+//             country: { type: String },
+//             latitude: { type: Number },
+//             longitude: { type: Number },
+//         },
+//         totalAmount: {
+//             type: Number,
+            
+//         }, 
+//         orderStatus:
+//         {
+//             ordered:true,
+//             accepted:false,
+//             cooking:false,
+//             outOfDelivery:false,
+//             delivered:false,
+//             cancelled:false,
+//         },
+//         orderDateAndTime:new Date(),
+//         foodList: [
+//             {
+//                 foodId:{
+//                     type:String,
+//                     required:true
+//                 }, 
+//                 foodName: {
+//                     type: String,
+// ,
+//                 },
+//                 foodType: {
+//                     type: String,
+
+//                 },
+//                 foodCategory: [{
+//                     type: String
+//                 }],
+//                 foodDescription: {
+//                     type: String,
+//                     required :true
+//                 },
+//                 foodImage: {
+//                     type: String, //Buffer later 
+
+//                 },
+//                 foodPrice: {
+//                     type: Number,
+
+//                 },
+//             }
+//         ],
+//         restaurantDetails: {
+//             restaurantId:{
+//                 type:String,
+//                 required:true
+//             },
+//             restaurantName: {
+//                 type: String,
+//             },
+//             restaurantLocation: {
+//                 address: { type: String },
+//                 city: { type: String },
+//                 zip: { type: Number },
+//                 state: { type: String },
+//                 country: { type: String },
+//                 latitude: { type: Number },
+//                 longitude: { type: Number },
+//                 required:true
+//             },
+//         },
+//         deliveryExecutiveDetails: {
+//             userId: {
+//                 type: mongoose.Schema.Types.ObjectId,
+//                 ref: 'userModel'
+//             }
+//         },
+//     })
+    
+// })
 
 // db.once('open',async function(){
 //     console.log("Connected");
