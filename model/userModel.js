@@ -4,44 +4,44 @@ const userSchema = new mongoose.Schema(
     {
         firstName:{
             type:String,
-            required:true
+            // required:true
         },
         lastName:{
             type:String,
-            required:true
+            // required:true
         },
-        
         email:{
             type:String,
-            required:true
+            // required:true
+            unique:true
         },
         password:{
             type:String,
-            required:true
+            // required:true
         },
         birthDate:{
             type: Date ,
-            required:true
+            // required:true
         },
         gender:{
             type:String,
-            required:true
+            // required:true
         },
         
         mobileNumber:{
             type:Number,
-            required:true
+            // required:true
         },
         role:[
             {
                 type:String,
-                required:true
+                // required:true
             }
         ],
         deliveryExecutive:{
             vehicleNumber:{
                 type:String, // think for data type
-                required:true,
+                // required:true,
             },
             deliveryExecutiveLocation:{
                 address:{type:String},
@@ -54,21 +54,21 @@ const userSchema = new mongoose.Schema(
             },
             activityStatus:{
                 type:Boolean,
-                required:true
+                // required:true
             },
             deliveryExecutiveRatings:[{
-                userID: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}, //Ref of User ID
+                userID: {type: mongoose.Schema.Types.ObjectId, ref: 'userModel'}, //Ref of User ID
                 rating: {type:Number}
             }],
         },
         cart:{
-            restaurantId:String,
-            foodList: [
-                {
-                    foodId: {type: mongoose.Schema.Types.ObjectId, ref: 'foodModel'}, //Ref of User ID
+            restaurantId:{
+               type: String
+            },
+            foodList: [{
+                    foodId: {type:String}, //Ref of User ID
                     quantity: {type:Number}
-                }
-            ],
+            }],
         },
         orderDetails:[{
             orderLocation:{
@@ -83,7 +83,7 @@ const userSchema = new mongoose.Schema(
             totalAmount:{
                 type:Number,
                 required:true
-            },
+            }, // add as array for status
             orderStatus:{
                 type:String,
                 required:true
@@ -108,7 +108,7 @@ const userSchema = new mongoose.Schema(
                     }],
                     foodDescription:{
                         type:String,
-                        required :true
+                        // required :true
                     },
                     foodImage:{
                         type:String, //Buffer later 
@@ -147,7 +147,8 @@ const userSchema = new mongoose.Schema(
                     ref: 'userModel'
                 }
             },
-        }]   
+        }]
+        
     }
 )
 
