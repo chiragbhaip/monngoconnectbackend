@@ -1,73 +1,64 @@
 const mongoose = require('mongoose');
+const deliveryExecutiveSchema = require('./deliveryExecutiveModel');
 
 const userSchema = new mongoose.Schema(
     {
-        firstName:{
-            type:String,
-            // required:true
+        firstName: {
+            type: String,
+            required: true
         },
-        lastName:{
-            type:String,
-            // required:true
+        lastName: {
+            type: String,
+            required: true
         },
-        email:{
-            type:String,
-            // required:true
-            unique:true
+        email: {
+            type: String,
+            required: true,
+            unique: true
         },
-        password:{
-            type:String,
-            // required:true
+        password: {
+            type: String,
+            required: true
         },
-        birthDate:{
-            type: Date ,
-            // required:true
+        birthDate: {
+            type: Date,
+            required: true
         },
-        gender:{
-            type:String,
-            // required:true
+        gender: {
+            type: String,
+            required: true
         },
-        
-        mobileNumber:{
-            type:Number,
-            // required:true
+
+        mobileNumber: {
+            type: Number,
+            required: true
         },
-        role:[
-            {
-                type:String,
-                // required:true
-            }
-        ],
-        deliveryExecutive:{
-            vehicleNumber:{
-                type:String, // think for data type
-                // required:true,
-            },
-            deliveryExecutiveLocation:{
-                address:{type:String},
-                city:{type:String},
-                zip:{type:Number},
-                state:{type:String},
-                country:{type:String},
-                latitude:{type:Number},
-                longitude:{type:Number},               
-            },
-            activityStatus:{
-                type:Boolean,
-                // required:true
-            },
-            deliveryExecutiveRatings:[{
-                userID: {type: mongoose.Schema.Types.ObjectId, ref: 'userModel'}, //Ref of User ID
-                rating: {type:Number}
-            }],
+        role:
+        {
+            type: String,
+            required: true
         },
-        cart:{
-            restaurantId:{
-               type: String
+        deliveryExecutive: {
+            type: deliveryExecutiveSchema
+        },
+        cart: {
+            _id:false,
+            restaurantId: {
+                type: String,
+                required: true
             },
             foodList: [{
-                    foodId: {type:String}, //Ref of User ID
-                    quantity: {type:Number}
+                _id:false,
+                foodId: {
+                    type: mongoose.Types.ObjectId,
+                    ref:'restaurant.menuDetails',
+                    requied: true   //
+                }, //Ref of User ID
+                quantity: {
+                    type: Number,
+                    required: true  //
+                },
+                required: true
             }],
         }
     }

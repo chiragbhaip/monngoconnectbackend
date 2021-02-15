@@ -1,20 +1,17 @@
 const mongoose = require('mongoose');
+const addressSchema = require('./addressModel');
+const foodSchema = require('./foodModel');
 
 const orderSchema = new mongoose.Schema(
     {
         orderLocation: {
-            address: { type: String },
-            city: { type: String },
-            zip: { type: Number },
-            state: { type: String },
-            country: { type: String },
-            latitude: { type: Number },
-            longitude: { type: Number },
+            type: addressSchema,
+            required: true
         },
         totalAmount: {
             type: Number,
             required: true
-        }, 
+        },
         orderStatus:
         {
             ordered: {
@@ -48,59 +45,24 @@ const orderSchema = new mongoose.Schema(
         },
         foodList: [
             {
-                foodId:{
-                    type:String,
-                    required:true
-                }, 
-                foodName: {
-                    type: String,
-                    required: true,
-                },
-                foodType: {
-                    type: String,
-                    required: true
-                },
-                foodCategory: [{
-                    type: String
-                }],
-                foodDescription: {
-                    type: String,
-                    required :true
-                },
-                foodImage: {
-                    type: String, //Buffer later 
-                    required: true
-                },
-                foodPrice: {
-                    type: Number,
-                    required: true
-                },
+                _id:false,
+                foodItem: { type: foodSchema, required: true },
+                quantity: { type: number, required: true }
             }
         ],
         restaurantDetails: {
-            restaurantId:{
-                type:String,
-                required:true
+            restaurantId: {
+                type: String,
+                required: true
             },
             restaurantName: {
                 type: String,
                 required: true
-            },
-            restaurantLocation: {
-                address: { type: String },
-                city: { type: String },
-                zip: { type: Number },
-                state: { type: String },
-                country: { type: String },
-                latitude: { type: Number },
-                longitude: { type: Number },
-            },
-        },
-        deliveryExecutiveDetails: {
-            userId: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'userModel'
             }
+        },
+        deliveryExecutive: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'user',
         },
     }
 )

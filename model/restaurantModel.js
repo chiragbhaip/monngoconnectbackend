@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const addressSchema = require('./addressModel');
+const foodSchema = require('./foodModel');
+const ratingSchema = require('./ratingSchema');
 
 const restaurantSchema = new mongoose.Schema(
     {
@@ -7,64 +10,35 @@ const restaurantSchema = new mongoose.Schema(
             required:true
         },        
         restaurantLocation:{
-            address:{type:String},
-            city:{type:String},
-            zip:{type:Number},
-            state:{type:String},
-            country:{type:String},
-            latitude:{type:Number},
-            longitude:{type:Number},            
+           type:addressSchema,
+           required:true            
             
         },
         workingHours:{
-            start: {type:Number},
-            end: {type:Number}
+            
+            start: {type:Number, required:true},
+            end: {type:Number,required:true}
         },
         activityStatus:{
             type:Boolean,
-            required:true
+            default:true    //extended: 
+            
         },
         restaurantImages:[{
             type:String,
-            required:true            
+            required:true           
         }],
         restaurantRatings:[{
-            userId: {type: mongoose.Schema.Types.ObjectId, ref: 'userModel'}, //Ref of User ID
-            rating: {type:Number}
+            type:ratingSchema
         }],
         userId:{
             type: mongoose.Schema.Types.ObjectId, 
-            ref: 'userModel'
+            ref: 'user'
         },
         menuDetails:[{
-            foodName:{
-                type:String,
-                required:true,
-            },
-            foodType:{
-                type:String,
-                required:true
-            },
-            foodCategory:[{
-                 type:String
-            }],
-            foodDescription:{
-                type:String,
-                required :true
-            },
-            foodImage:{
-                type:String, //Buffer later 
-                required:true
-            },
-            foodPrice:{
-                type:Number,
-                required:true
-            },
-            foodRating:[{
-                userID: {type: mongoose.Schema.Types.ObjectId, ref: 'userModel'}, //Ref of User ID
-                rating: {type:Number}
-            }],
-        }]
+            type:foodSchema,
+            required:true
+        },]
     }
 )
 
